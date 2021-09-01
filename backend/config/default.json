@@ -1,0 +1,9 @@
+{
+    "mongoURI":"mongodb+srv://admin:admin@cluster.conec.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
+    "jwtSecret":"AlanTuringisbest",
+    "AWSAccessKeyId":"AKIAXYWESN7U3Q7TYLKP",
+    "AWSSecretKey":"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",
+    "AWSBucketName":"sailsmith-s3",
+    "textLocalApiKey":"XrhyK25Niw4-3amrJULQYoVTm9vgPvNfLdQvZHmgLn",
+    "sendGridApiKey":"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"
+}
