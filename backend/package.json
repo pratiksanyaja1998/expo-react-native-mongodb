@@ -1,7 +1,7 @@
 {
   "name": "connections",
   "version": "1.0.0",
-  "description": "social network for devs",
+  "description": "",
   "main": "server.js",
   "scripts": {
     "start": "node server",
@@ -9,7 +9,7 @@
     "client": "npm start --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\""
   },
-  "author": "Smit Parmar",
+  "author": "Pratik Sanyaja",
   "license": "ISC",
   "dependencies": {
     "@sendgrid/mail": "^7.4.2",
@@ -26,23 +26,15 @@
     "https": "^1.0.0",
     "jsonwebtoken": "^8.5.1",
     "moment": "^2.28.0",
-    "mongoose": "^5.10.3",
+    "mongoose": "^6.0.3",
     "multer": "^1.4.2",
-    "razorpay": "^2.0.6",
-    "react-moment": "^0.9.7",
-    "react-redux": "^7.2.1",
-    "react-router-dom": "^5.2.0",
-    "redux": "^4.0.5",
-    "redux-devtools-extension": "^2.13.8",
-    "redux-thunk": "^2.3.0",
     "request": "^2.88.2",
     "server": "^1.0.32",
-    "socket.io": "^3.1.2",
     "uui": "^1.0.7",
     "uuid": "^8.3.0"
   },
   "devDependencies": {
     "concurrently": "^5.3.0",
-    "nodemon": "^2.0.4"
+    "nodemon": "^2.0.12"
   }
 }
