@@ -1,22 +1,53 @@
 import React, { Component } from "react";
-import { Text, View, StyleSheet, TextInput, Button, Image } from "react-native";
+import { Text, View, StyleSheet, TextInput, Button, Image ,Keyboard } from "react-native";
 
 function Login(props) {
-  const [username, setUsername] = React.useState("");
+  const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
 
+  const signIn = (e) => {
+    // const  email, password 
+    // const { openAlert, navigation } = this.props;
+    // const { navigation } = this.props;
+
+    Keyboard.dismiss();
+
+    if (!email || !(email && isEmail(email))) {
+      return openAlert("Please enter a valid email address");
+    }
+    if (!password || (password && password.length < 6)) {
+      return openAlert("Password must be at least 6 characters");
+    }
+    // return this.props.emailPassWOrdLogin(email, password,navigation);
+    try {
+      const response = axios
+        .post("https://pratiksanyaja1998.pythonanywhere.com/api/user/login", {
+          email,
+          password,
+        })
+        .then((response) => response.data);
+      console.log("EmailPasswordLogin", response);
+      // dispatch(AuthActions.setUser(response));
+      // navigation.navigate("HomeStack");
+    } catch ({ message }) {
+      // dispatch(CommonActions.setAlert({ visible: true, content: message }));
+    }
+  };
   return (
     <View style={styles.container}>
       <View style={styles.loginView}>
         <View>
-          <Image source={require('../../assets/logo.png')} style={{width: '100%', resizeMode: 'contain', height: 100}} />
+          <Image
+            source={require("../../assets/logo.png")}
+            style={{ width: "100%", resizeMode: "contain", height: 100 }}
+          />
         </View>
         <TextInput
-          placeholder="Username"
-          value={username}
+          placeholder="email"
+          value={email}
           style={{ width: "100%" }}
           style={styles.input}
-          onChangeText={setUsername}
+          onChangeText={setEmail}
         />
         <TextInput
           placeholder="Password"
@@ -25,10 +56,7 @@ function Login(props) {
           onChangeText={setPassword}
           secureTextEntry
         />
-        <Button
-          title="Sign in"
-          onPress={() => signIn({ username, password })}
-        />
+        <Button title="Sign in" onPress={signIn} />
       </View>
     </View>
   );
@@ -56,10 +84,9 @@ const styles = StyleSheet.create({
     // width: '100%'
   },
   image: {
-    resizeMode: 'contain',
-    width: '100%',
-    height: '100%',
+    resizeMode: "contain",
+    width: "100%",
+    height: "100%",
   },
 });
-
 export default Login;
