@@ -5,6 +5,7 @@ import SignupScreen from "./screen/Signup";
 import LoginScreen from "./screen/Login";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import HomeScreen from "./screen/Home";
+import { UseContext } from "./context";
 
 const Stack = createNativeStackNavigator();
 
