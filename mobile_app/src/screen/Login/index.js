@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Text, View, StyleSheet, TextInput, Button, Image } from "react-native";
-import Logo from '../../assets';
 
 function Login(props) {
   const [username, setUsername] = React.useState("");
@@ -10,7 +9,7 @@ function Login(props) {
     <View style={styles.container}>
       <View style={styles.loginView}>
         <View>
-          <Image source={Logo} style={{width: 200, height: 200}} />
+          <Image source={require('../../assets/logo.png')} style={{width: '100%', resizeMode: 'contain', height: 100}} />
         </View>
         <TextInput
           placeholder="Username"
