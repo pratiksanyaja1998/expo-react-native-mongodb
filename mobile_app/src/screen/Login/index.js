@@ -7,40 +7,45 @@ import {
   Button,
   Image,
   Dimensions,
+  Keyboard,
   TouchableOpacity,
 } from "react-native";
 const { width, height } = Dimensions.get("window");
+import axios from 'axios';
+
 
 function Login(props) {
-  const [email, setEmail] = React.useState("");
-  const [password, setPassword] = React.useState("");
+  const [email, setEmail] = React.useState("test@gmail.com");
+  const [password, setPassword] = React.useState("Admin@123*");
 
-  const signIn = (e) => {
-    // const  email, password 
-    // const { openAlert, navigation } = this.props;
-    // const { navigation } = this.props;
+  const signIn = async (e) => {
+    
 
     Keyboard.dismiss();
 
-    if (!email || !(email && isEmail(email))) {
-      return openAlert("Please enter a valid email address");
+    if (!email || !(email)) {
+      return alert("Please enter a valid email address");
     }
     if (!password || (password && password.length < 6)) {
-      return openAlert("Password must be at least 6 characters");
+      return alert("Password must be at least 6 characters");
     }
+    console.log("eeee" , email)
+    console.log("pppp", password);
     // return this.props.emailPassWOrdLogin(email, password,navigation);
     try {
-      const response = axios
-        .post("https://pratiksanyaja1998.pythonanywhere.com/api/user/login", {
+      const response = await axios
+        .post("/auth/login", {
           email,
           password,
         })
         .then((response) => response.data);
       console.log("EmailPasswordLogin", response);
-      // dispatch(AuthActions.setUser(response));
-      // navigation.navigate("HomeStack");
-    } catch ({ message }) {
-      // dispatch(CommonActions.setAlert({ visible: true, content: message }));
+      props.navigation.replace("home");
+     
+    } catch (error) {
+      console.log("error " , error.response)
+      alert (error.response.data.message)
+      
     }
   };
   return (

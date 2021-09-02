@@ -31,22 +31,22 @@ router.post(
     check("password", "correct password required").exists("password required"),
   ],
   async (req, res) => {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      console.log(errors);
-      return res.status(400).json({
-        success: false,
-        message: errors.message,
-        data: "",
-      });
-    }
-
+    // const errors = validationResult(req);
+    // if (!errors.isEmpty()) {
+    //   console.log(errors);
+    //   return res.status(400).json({
+    //     success: false,
+    //     message: errors.message,
+    //     data: "",
+    //   });
+    // }
+    console.log("===================================================ffffffffffffffffffffffff")
+    console.log(req.body);
     const { email, password } = req.body;
     try {
       //see if user exists
-      let user = await User.findOne({ email })
-        .populate("collegeId")
-        .populate("agencyId");
+      let user = await User.findOne({ email });
+       
 
       if (!user) {
         return res.status(400).json({

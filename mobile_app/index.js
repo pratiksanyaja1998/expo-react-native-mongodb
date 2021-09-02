@@ -4,9 +4,9 @@ import axios from "axios";
 import App from "./src";
 
 if (__DEV__) {
-  axios.defaults.baseURL = "http://192.168.0.109/php/api";
+  axios.defaults.baseURL = "http://192.168.1.9:5000/api";
 } else {
-  axios.defaults.baseURL = "https://spyhunteritsolution.in/api";
+  axios.defaults.baseURL = "http://192.168.1.9:5000/api";
 }
 
 // axios.defaults.headers.common["Authorization"] = "";
