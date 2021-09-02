@@ -8,7 +8,7 @@ function Login(props) {
   const { signIn } = React.useContext(AuthContext);
 
   return (
-    <View>
+    <View style={styles.container}>
       <TextInput
         placeholder="Username"
         value={username}
@@ -24,5 +24,27 @@ function Login(props) {
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#003f5c",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  inputView: {
+    width: "80%",
+    backgroundColor: "#465881",
+    borderRadius: 25,
+    height: 50,
+    marginBottom: 20,
+    justifyContent: "center",
+    padding: 20,
+  },
+  input: {
+    height: 50,
+    color: "white",
+  },
+});
 
 export default Login;
