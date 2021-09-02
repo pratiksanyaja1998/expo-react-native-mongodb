@@ -49,6 +49,12 @@ function Login(props) {
             <Text style={{ color: "#fff", textAlign: "center" }}>SIGN IN</Text>
           </View>
         </TouchableOpacity>
+
+        <TouchableOpacity onPress={()=>props.navigation.push("signup")}>
+          <View style={styles.signUpButton}>
+            <Text style={{ color: "#fff", textAlign: "center" }}>SIGN UP</Text>
+          </View>
+        </TouchableOpacity>
       </View>
     </View>
   );
@@ -94,6 +100,16 @@ const styles = StyleSheet.create({
     padding: 12,
     borderRadius: 3,
     color: "#fff",
+    marginBottom: 10,
+    textAlign: "center",
+  },
+  signUpButton: {
+    fontSize: 18,
+    backgroundColor: "#ec8e2a",
+    padding: 12,
+    borderRadius: 3,
+    color: "#fff",
+    marginBottom: 10,
     textAlign: "center",
   },
 });
