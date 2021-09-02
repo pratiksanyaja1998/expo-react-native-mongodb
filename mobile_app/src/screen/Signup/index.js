@@ -11,7 +11,6 @@ import {
 } from "react-native";
 // import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import { Dimensions } from "react-native";
-import MainCointainer from "../../component/MainContainer"
 const { width, height } = Dimensions.get("window");
 
 const styles = StyleSheet.create({
@@ -66,69 +65,66 @@ export default class RegistrationScreen extends Component {
   render() {
     return (
       <View style={styles.container}>
-          <MainContainer>
-          <View style={styles.textInputContainer}>
-            <TextInput
-              underlineColorAndroid="transparent"
-              autoCapitalize="words"
-              autoCorrect={false}
-              placeholder={"First name"}
-              placeholderTextColor={'#B4B9B9'}
-              returnKeyType="done"
-              style={styles.textInput}
-              value={this.state.first_name}
-              onChangeText={(first_name) => this.setState({ first_name })}
-            />
-          </View>
-          <View style={styles.textInputContainer}>
-            <TextInput
-              underlineColorAndroid="transparent"
-              autoCapitalize="words"
-              autoCorrect={false}
-              placeholder={"Last name"}
-              placeholderTextColor={'#B4B9B9'}
-              returnKeyType="done"
-              style={styles.textInput}
-              value={this.state.Last_name}
-              onChangeText={(last_name) => this.setState({ last_name })}
-            />
-          </View>
-          <View style={styles.textInputContainer}>
-            <TextInput
-              underlineColorAndroid="transparent"
-              autoCapitalize="none"
-              autoCorrect={false}
-              placeholder={"Email"}
-              placeholderTextColor={'#B4B9B9'}
-              keyboardType="email-address"
-              returnKeyType="done"
-              style={styles.textInput}
-              value={this.state.email}
-              onChangeText={(email) => this.setState({ email })}
-            />
-          </View>
-          <View style={styles.textInputContainer}>
-            <TextInput
-              underlineColorAndroid="transparent"
-              autoCapitalize="none"
-              autoCorrect={false}
-              placeholder={'Password'}
-              placeholderTextColor={'#B4B9B9'}
-              secureTextEntry={true}
-              style={styles.textInput}
-              returnKeyType="done"
-              value={this.state.password}
-              onChangeText={(password) => this.setState({ password })}
-            />
-            
-          </View>
-          
-          <Button
-             title={"Registration"}
-            style={styles.registerButton}
-            onPress={this.onRegistration.bind(this)}
+        <View style={styles.textInputContainer}>
+          <TextInput
+            underlineColorAndroid="transparent"
+            autoCapitalize="words"
+            autoCorrect={false}
+            placeholder={"First name"}
+            placeholderTextColor={"#B4B9B9"}
+            returnKeyType="done"
+            style={styles.textInput}
+            value={this.state.first_name}
+            onChangeText={(first_name) => this.setState({ first_name })}
           />
-          </MainContainer>
+        </View>
+        <View style={styles.textInputContainer}>
+          <TextInput
+            underlineColorAndroid="transparent"
+            autoCapitalize="words"
+            autoCorrect={false}
+            placeholder={"Last name"}
+            placeholderTextColor={"#B4B9B9"}
+            returnKeyType="done"
+            style={styles.textInput}
+            value={this.state.Last_name}
+            onChangeText={(last_name) => this.setState({ last_name })}
+          />
+        </View>
+        <View style={styles.textInputContainer}>
+          <TextInput
+            underlineColorAndroid="transparent"
+            autoCapitalize="none"
+            autoCorrect={false}
+            placeholder={"Email"}
+            placeholderTextColor={"#B4B9B9"}
+            keyboardType="email-address"
+            returnKeyType="done"
+            style={styles.textInput}
+            value={this.state.email}
+            onChangeText={(email) => this.setState({ email })}
+          />
+        </View>
+        <View style={styles.textInputContainer}>
+          <TextInput
+            underlineColorAndroid="transparent"
+            autoCapitalize="none"
+            autoCorrect={false}
+            placeholder={"Password"}
+            placeholderTextColor={"#B4B9B9"}
+            secureTextEntry={true}
+            style={styles.textInput}
+            returnKeyType="done"
+            value={this.state.password}
+            onChangeText={(password) => this.setState({ password })}
+          />
+        </View>
+
+        <Button
+          title={"Registration"}
+          style={styles.registerButton}
+          onPress={this.onRegistration.bind(this)}
+        />
       </View>
     );
   }

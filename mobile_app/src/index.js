@@ -22,7 +22,9 @@ export default function App(props) {
         // AsyncStorage.removeItem("user");
         // dispatch({ type: "SIGN_OUT" });
       },
-      signUp: async (data) => {},
+      signUp: async (data) => {
+        
+      },
     }),
     []
   );

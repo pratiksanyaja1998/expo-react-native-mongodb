@@ -5,24 +5,4 @@
 // export { default as Icon } from './Icon';
 // export { default as MainContainer } from './MainContainer';
 // export { default as RoundButton } from './RoundButton';
-// export { default as SegmentControl } from './SegmentControl';
-// export { default as LongButton } from './LongButton';
-// export { default as ZoomImage } from './ZoomImage';
-// export { default as Modal } from './Modal';
-// export { default as DropDownInput } from './DropDownInput';
-// export { default as DatePicker } from './DatePicker';
-// export { default as TimePicker } from './TimePicker';
-// export { default as Alert } from './Alert';
-// export { default as WebView } from './WebView';
-// export { default as QRCode } from './QRCode';
-// export { default as Loading } from './Loading';
-// export { default as Timer } from './Timer';
-// export { default as CheckBox } from './CheckBox';
-// export { default as AppText } from './AppText';
-// export { default as NetworkStatus } from './NetworkStatus';
-// export { default as AutoHeightWebview } from './AutoHeightWebview';
-// export { default as EmptyView } from './EmptyView';
-// export { default as LocationPicker } from './LocationPicker';
-// export { default as SwipeRow } from './SwipeRow';
-
-export {default as MainContainer} from './MainContainer';
+// export {default as MainContainer} from './MainContainer';
