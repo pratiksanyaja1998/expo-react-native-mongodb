@@ -7,19 +7,51 @@ import {
   Button,
   Image,
   Dimensions,
+  Keyboard,
   TouchableOpacity,
 } from "react-native";
+import axios from "axios";
+
 const { width, height } = Dimensions.get("window");
 
 function Signup(props) {
-  const [username, setUsername] = React.useState("");
-  const [password, setPassword] = React.useState("");
+  const [first_name, setFrist_name] = React.useState("Test1");
+  const [last_name, setLast_name] = React.useState("Test2");
+  const [email, setEmail] = React.useState("test2@gmail.com");
+  const [password, setPassword] = React.useState("1234567");
   console.log(width, height);
 
-  const signup = () => {
-    axios.post("/auth/register",{}).then(()=>{
-      
-    })
+  const signup = async (e) => {
+    Keyboard.dismiss();
+    
+    if (!email || !email) {
+      return alert("Please enter a valid email address");
+    }
+    if (!password || (password && password.length < 6)) {
+      return alert("Password must be at least 6 characters");
+    }
+    if (!first_name) {
+      return alert("Please fill out First name .");
+    }
+    if (!last_name) {
+      return alert("Please fill out Last name .");
+    }
+    
+    try {
+      const response = await axios
+        .post("/auth/register", {
+          first_name,
+          last_name,
+          email,
+          password,
+        })
+        .then((response) => response.data);
+      console.log("Registration", response);
+      props.navigation.replace("home");
+    } catch (error) {
+      console.log("error ", error.response);
+      alert(error.response.data.message);
+    }
   };
 
   return (
@@ -33,27 +65,27 @@ function Signup(props) {
         </View>
         <TextInput
           placeholder="First Name"
-          value={username}
+          value={first_name}
           keyboardType="name-phone-pad"
           style={{ width: "100%" }}
           style={styles.input}
-          onChangeText={setUsername}
+          onChangeText={setFrist_name}
         />
         <TextInput
           placeholder="Last Name"
-          value={username}
+          value={last_name}
           keyboardType="name-phone-pad"
           style={{ width: "100%" }}
           style={styles.input}
-          onChangeText={setUsername}
+          onChangeText={setLast_name}
         />
         <TextInput
           placeholder="Email"
-          value={username}
+          value={email}
           keyboardType="email-address"
           style={{ width: "100%" }}
           style={styles.input}
-          onChangeText={setUsername}
+          onChangeText={setEmail}
         />
         <TextInput
           placeholder="Password"
@@ -62,23 +94,12 @@ function Signup(props) {
           onChangeText={setPassword}
           secureTextEntry
         />
-        {/* <Button
-          title="Sign in"
-          style={styles.signInButton}
-          color="#000"
-          onPress={() => signIn({ username, password })}
-        /> */}
-        <TouchableOpacity>
+
+        <TouchableOpacity onPress={signup}>
           <View style={styles.signInButton}>
             <Text style={{ color: "#fff", textAlign: "center" }}>SIGN UP</Text>
           </View>
         </TouchableOpacity>
-
-        {/* <TouchableOpacity onPress={()=>props.navigation.push("signup")}>
-          <View style={styles.signUpButton}>
-            <Text style={{ color: "#fff", textAlign: "center" }}>SIGN UP</Text>
-          </View>
-        </TouchableOpacity> */}
       </View>
     </View>
   );

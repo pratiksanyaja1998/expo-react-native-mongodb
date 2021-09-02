@@ -11,7 +11,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 const { width, height } = Dimensions.get("window");
-import axios from 'axios';
+import axios from "axios";
 
 
 function Login(props) {
@@ -19,17 +19,15 @@ function Login(props) {
   const [password, setPassword] = React.useState("Admin@123*");
 
   const signIn = async (e) => {
-    
-
     Keyboard.dismiss();
 
-    if (!email || !(email)) {
+    if (!email || !email) {
       return alert("Please enter a valid email address");
     }
     if (!password || (password && password.length < 6)) {
       return alert("Password must be at least 6 characters");
     }
-    console.log("eeee" , email)
+    console.log("eeee", email);
     console.log("pppp", password);
     // return this.props.emailPassWOrdLogin(email, password,navigation);
     try {
@@ -41,11 +39,9 @@ function Login(props) {
         .then((response) => response.data);
       console.log("EmailPasswordLogin", response);
       props.navigation.replace("home");
-     
     } catch (error) {
-      console.log("error " , error.response)
-      alert (error.response.data.message)
-      
+      console.log("error ", error.response);
+      alert(error.response.data.message);
     }
   };
   return (
@@ -83,7 +79,7 @@ function Login(props) {
           </View>
         </TouchableOpacity>
 
-        <TouchableOpacity onPress={()=>props.navigation.push("signup")}>
+        <TouchableOpacity onPress={() => props.navigation.push("signup")}>
           <View style={styles.signUpButton}>
             <Text style={{ color: "#fff", textAlign: "center" }}>SIGN UP</Text>
           </View>
