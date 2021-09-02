@@ -24,9 +24,9 @@ export default function App(props) {
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
-        {!isSignedIn && <Stack.Screen name="Login" component={LoginScreen} />}
-        <Stack.Screen name="Home" component={HomeScreen} />
-        <Stack.Screen name="SignUp" component={SignupScreen} />
+        {!isSignedIn && <Stack.Screen name="login" component={LoginScreen} />}
+        <Stack.Screen name="home" component={HomeScreen} />
+        <Stack.Screen name="signup" component={SignupScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
