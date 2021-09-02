@@ -16,10 +16,10 @@ import axios from "axios";
 const { width, height } = Dimensions.get("window");
 
 function Signup(props) {
-  const [first_name, setFrist_name] = useState("Test1");
-  const [last_name, setLast_name] = useState("Test2");
-  const [email, setEmail] = useState("test2@gmail.com");
-  const [password, setPassword] = useState("1234567");
+  const [first_name, setFrist_name] = useState("");
+  const [last_name, setLast_name] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   console.log(width, height);
 

@@ -15,8 +15,8 @@ const { width, height } = Dimensions.get("window");
 import axios from "axios";
 
 function Login(props) {
-  const [email, setEmail] = useState("test@gmail.com");
-  const [password, setPassword] = useState("Admin@123*");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
 
   const signIn = async (e) => {
