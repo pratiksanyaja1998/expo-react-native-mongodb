@@ -1,131 +1,141 @@
 import React, { Component } from "react";
 import {
-  Button,
-  Keyboard,
-  Platform,
-  StyleSheet,
   Text,
-  TextInput,
-  TouchableOpacity,
   View,
+  StyleSheet,
+  TextInput,
+  Button,
+  Image,
+  Dimensions,
+  TouchableOpacity,
 } from "react-native";
-// import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
-import { Dimensions } from "react-native";
 const { width, height } = Dimensions.get("window");
+
+function Signup(props) {
+  const [username, setUsername] = React.useState("");
+  const [password, setPassword] = React.useState("");
+  console.log(width, height);
+
+  const signup = () => {
+    axios.post("/auth/register",{}).then(()=>{
+      
+    })
+  };
+
+  return (
+    <View style={styles.container}>
+      <View style={styles.loginView}>
+        <View>
+          <Image
+            source={require("../../assets/logo.png")}
+            style={{ width: "100%", resizeMode: "contain", height: 100 }}
+          />
+        </View>
+        <TextInput
+          placeholder="First Name"
+          value={username}
+          keyboardType="name-phone-pad"
+          style={{ width: "100%" }}
+          style={styles.input}
+          onChangeText={setUsername}
+        />
+        <TextInput
+          placeholder="Last Name"
+          value={username}
+          keyboardType="name-phone-pad"
+          style={{ width: "100%" }}
+          style={styles.input}
+          onChangeText={setUsername}
+        />
+        <TextInput
+          placeholder="Email"
+          value={username}
+          keyboardType="email-address"
+          style={{ width: "100%" }}
+          style={styles.input}
+          onChangeText={setUsername}
+        />
+        <TextInput
+          placeholder="Password"
+          value={password}
+          style={styles.input}
+          onChangeText={setPassword}
+          secureTextEntry
+        />
+        {/* <Button
+          title="Sign in"
+          style={styles.signInButton}
+          color="#000"
+          onPress={() => signIn({ username, password })}
+        /> */}
+        <TouchableOpacity>
+          <View style={styles.signInButton}>
+            <Text style={{ color: "#fff", textAlign: "center" }}>SIGN UP</Text>
+          </View>
+        </TouchableOpacity>
+
+        {/* <TouchableOpacity onPress={()=>props.navigation.push("signup")}>
+          <View style={styles.signUpButton}>
+            <Text style={{ color: "#fff", textAlign: "center" }}>SIGN UP</Text>
+          </View>
+        </TouchableOpacity> */}
+      </View>
+    </View>
+  );
+}
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#003f5c",
+    backgroundColor: "#f4f4f4",
     alignItems: "center",
     justifyContent: "center",
   },
-  inputView: {
-    width: "80%",
-    backgroundColor: "#465881",
-    borderRadius: 25,
-    height: 50,
-    marginBottom: 20,
-    justifyContent: "center",
-    padding: 20,
+  loginView: {
+    // maxWidth: 600,
+    // borderWidth: 1,
+    // borderColor: "#000",
+    padding: 15,
+    width: "100%",
+    maxWidth: width > 400 ? 380 : null,
   },
   input: {
-    // width: "100%",
-    // height: 44,
-    // padding: 10,
-    // borderWidth: 1,
-    // borderColor: "black",
-    // marginBottom: 10,
-    height: 50,
-    color: "white",
+    marginBottom: 10,
+    // width: 350,
+    // maxWidth: 350,
+    width: "100%",
+    // maxWidth:
+    backgroundColor: "#fff",
+    padding: 8,
+    fontSize: 18,
+    borderRadius: 3,
+    borderColor: "#ccc",
+    borderWidth: 1,
+    // width: '100%'
+  },
+  image: {
+    resizeMode: "contain",
+    width: "100%",
+    height: "100%",
+  },
+  signInButton: {
+    fontSize: 18,
+    backgroundColor: "#000",
+    padding: 12,
+    borderRadius: 3,
+    color: "#fff",
+    marginBottom: 10,
+    textAlign: "center",
+  },
+  signUpButton: {
+    fontSize: 18,
+    backgroundColor: "#ec8e2a",
+    padding: 12,
+    borderRadius: 3,
+    color: "#fff",
+    marginBottom: 10,
+    textAlign: "center",
   },
 });
 
-export default class RegistrationScreen extends Component {
-  wRef = React.createRef();
-
-  constructor(props) {
-    super(props);
-    this.state = {
-      first_name: "",
-      last_name: "",
-      email: "",
-      password: "",
-    };
-  }
-  onRegistration() {
-    const { first_name, last_name, email, password } = this.state;
-
-    Alert.alert(
-      "Credentials",
-      `${first_name} +${last_name} + ${email} + ${password}`
-    );
-  }
-
-  render() {
-    return (
-      <View style={styles.container}>
-        <View style={styles.textInputContainer}>
-          <TextInput
-            underlineColorAndroid="transparent"
-            autoCapitalize="words"
-            autoCorrect={false}
-            placeholder={"First name"}
-            placeholderTextColor={"#B4B9B9"}
-            returnKeyType="done"
-            style={styles.textInput}
-            value={this.state.first_name}
-            onChangeText={(first_name) => this.setState({ first_name })}
-          />
-        </View>
-        <View style={styles.textInputContainer}>
-          <TextInput
-            underlineColorAndroid="transparent"
-            autoCapitalize="words"
-            autoCorrect={false}
-            placeholder={"Last name"}
-            placeholderTextColor={"#B4B9B9"}
-            returnKeyType="done"
-            style={styles.textInput}
-            value={this.state.Last_name}
-            onChangeText={(last_name) => this.setState({ last_name })}
-          />
-        </View>
-        <View style={styles.textInputContainer}>
-          <TextInput
-            underlineColorAndroid="transparent"
-            autoCapitalize="none"
-            autoCorrect={false}
-            placeholder={"Email"}
-            placeholderTextColor={"#B4B9B9"}
-            keyboardType="email-address"
-            returnKeyType="done"
-            style={styles.textInput}
-            value={this.state.email}
-            onChangeText={(email) => this.setState({ email })}
-          />
-        </View>
-        <View style={styles.textInputContainer}>
-          <TextInput
-            underlineColorAndroid="transparent"
-            autoCapitalize="none"
-            autoCorrect={false}
-            placeholder={"Password"}
-            placeholderTextColor={"#B4B9B9"}
-            secureTextEntry={true}
-            style={styles.textInput}
-            returnKeyType="done"
-            value={this.state.password}
-            onChangeText={(password) => this.setState({ password })}
-          />
-        </View>
-
-        <Button
-          title={"Registration"}
-          style={styles.registerButton}
-          onPress={this.onRegistration.bind(this)}
-        />
-      </View>
-    );
-  }
-}
+export default Signup;
