@@ -29,10 +29,11 @@ export default function App(props) {
     []
   );
 
-  if (isSignedIn == null) {
+  if (isSignedIn == null || true) {
     // We haven't finished checking for the token yet
     return (
       <View style={styles.container}>
+        <Text>Helllo</Text>
         <ActivityIndicator size="large" />
       </View>
     );
