@@ -1,11 +1,9 @@
 import React, { Component } from "react";
-import { Text, View, StyleSheet } from "react-native";
+import { Text, View, StyleSheet, TextInput, Button } from "react-native";
 
 function Login(props) {
   const [username, setUsername] = React.useState("");
   const [password, setPassword] = React.useState("");
-
-  const { signIn } = React.useContext(AuthContext);
 
   return (
     <View style={styles.container}>

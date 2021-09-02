@@ -5,57 +5,30 @@ import SignupScreen from "./screen/Signup";
 import LoginScreen from "./screen/Login";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import HomeScreen from "./screen/Home";
-import { UseContext } from "./context";
+import { NavigationContainer } from "@react-navigation/native";
 
 const Stack = createNativeStackNavigator();
 
 export default function App(props) {
-  const [isSignedIn, setSignedIn] = useState(null);
+  const [isSignedIn, setSignedIn] = useState(false);
 
-  const authContext = React.useMemo(
-    () => ({
-      signIn: async (data) => {
-        console.log("signInclick ....");
-      },
-      signOut: () => {
-        // // console.log("signOut .....")
-        // AsyncStorage.removeItem("user");
-        // dispatch({ type: "SIGN_OUT" });
-      },
-      signUp: async (data) => {
-        
-      },
-    }),
-    []
-  );
-
-  if (isSignedIn == null || true) {
+  if (isSignedIn == null) {
     // We haven't finished checking for the token yet
     return (
       <View style={styles.container}>
-        <Text>Helllo</Text>
-        <ActivityIndicator size="large" />
+        <ActivityIndicator size="large" color="#000" />
       </View>
     );
   }
 
   return (
-    <UseContext.Provider value={authContext}>
+    <NavigationContainer>
       <Stack.Navigator>
-        {isSignedIn ? (
-          <>
-            <Stack.Screen name="Home" component={HomeScreen} />
-            {/* <Stack.Screen name="Profile" component={ProfileScreen} />
-          <Stack.Screen name="Settings" component={SettingsScreen} /> */}
-          </>
-        ) : (
-          <>
-            <Stack.Screen name="Login" component={LoginScreen} />
-            <Stack.Screen name="SignUp" component={SignupScreen} />
-          </>
-        )}
+        {!isSignedIn && <Stack.Screen name="Login" component={LoginScreen} />}
+        <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="SignUp" component={SignupScreen} />
       </Stack.Navigator>
-    </UseContext.Provider>
+    </NavigationContainer>
   );
 }
 
