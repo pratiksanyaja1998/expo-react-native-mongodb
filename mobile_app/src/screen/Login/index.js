@@ -12,9 +12,37 @@ import {
 const { width, height } = Dimensions.get("window");
 
 function Login(props) {
-  const [username, setUsername] = React.useState("");
+  const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
-  console.log(width, height);
+
+  const signIn = (e) => {
+    // const  email, password 
+    // const { openAlert, navigation } = this.props;
+    // const { navigation } = this.props;
+
+    Keyboard.dismiss();
+
+    if (!email || !(email && isEmail(email))) {
+      return openAlert("Please enter a valid email address");
+    }
+    if (!password || (password && password.length < 6)) {
+      return openAlert("Password must be at least 6 characters");
+    }
+    // return this.props.emailPassWOrdLogin(email, password,navigation);
+    try {
+      const response = axios
+        .post("https://pratiksanyaja1998.pythonanywhere.com/api/user/login", {
+          email,
+          password,
+        })
+        .then((response) => response.data);
+      console.log("EmailPasswordLogin", response);
+      // dispatch(AuthActions.setUser(response));
+      // navigation.navigate("HomeStack");
+    } catch ({ message }) {
+      // dispatch(CommonActions.setAlert({ visible: true, content: message }));
+    }
+  };
   return (
     <View style={styles.container}>
       <View style={styles.loginView}>
@@ -25,11 +53,11 @@ function Login(props) {
           />
         </View>
         <TextInput
-          placeholder="Username"
-          value={username}
+          placeholder="email"
+          value={email}
           style={{ width: "100%" }}
           style={styles.input}
-          onChangeText={setUsername}
+          onChangeText={setEmail}
         />
         <TextInput
           placeholder="Password"
@@ -44,7 +72,7 @@ function Login(props) {
           color="#000"
           onPress={() => signIn({ username, password })}
         /> */}
-        <TouchableOpacity>
+        <TouchableOpacity onPress={signIn}>
           <View style={styles.signInButton}>
             <Text style={{ color: "#fff", textAlign: "center" }}>SIGN IN</Text>
           </View>
@@ -113,5 +141,4 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
 });
-
 export default Login;
