@@ -36,7 +36,7 @@ function Login(props) {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flex:1,
     backgroundColor: "#ccc",
     alignItems: "center",
     justifyContent: "center",
@@ -46,10 +46,15 @@ const styles = StyleSheet.create({
     // borderWidth: 1,
     // borderColor: "#000",
     padding: 10,
+    width: '100%',
+    maxWidth: 300
   },
   input: {
     marginBottom: 10,
-    width: 250,
+    // width: 350,
+    // maxWidth: 350,
+    width: '100%',
+    // maxWidth:
     backgroundColor: "#fff",
     padding: 5,
     fontSize: 18,
