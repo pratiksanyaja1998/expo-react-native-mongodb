@@ -14,7 +14,7 @@ module.exports = async (req,res,next) => {
     //verify token
     try{
         const decoded = jwt.verify(token,config.get('jwtSecret'));
-        const user =  await User.findById(decoded.user._id).select("-password").populate("collegeId").populate("agencyId");
+        const user =  await User.findById(decoded.user._id).select("-password");
         req.user = user;
         next();
     }

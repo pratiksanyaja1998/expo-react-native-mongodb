@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
 import {
   Text,
   View,
@@ -9,16 +9,18 @@ import {
   Dimensions,
   Keyboard,
   TouchableOpacity,
+  ActivityIndicator,
 } from "react-native";
 const { width, height } = Dimensions.get("window");
 import axios from "axios";
 
-
 function Login(props) {
-  const [email, setEmail] = React.useState("test@gmail.com");
-  const [password, setPassword] = React.useState("Admin@123*");
+  const [email, setEmail] = useState("test@gmail.com");
+  const [password, setPassword] = useState("Admin@123*");
+  const [loading, setLoading] = useState(false);
 
   const signIn = async (e) => {
+    setLoading(true);
     Keyboard.dismiss();
 
     if (!email || !email) {
@@ -38,8 +40,10 @@ function Login(props) {
         })
         .then((response) => response.data);
       console.log("EmailPasswordLogin", response);
+      axios.defaults.headers.common["x-auth-token"] = response.data.token
       props.navigation.replace("home");
     } catch (error) {
+      setLoading(false);
       console.log("error ", error.response);
       alert(error.response.data.message);
     }
@@ -75,7 +79,13 @@ function Login(props) {
         /> */}
         <TouchableOpacity onPress={signIn}>
           <View style={styles.signInButton}>
-            <Text style={{ color: "#fff", textAlign: "center" }}>SIGN IN</Text>
+            {loading ? (
+              <ActivityIndicator size="small" color="#fff" />
+            ) : (
+              <Text style={{ color: "#fff", textAlign: "center" }}>
+                SIGN IN
+              </Text>
+            )}
           </View>
         </TouchableOpacity>
 

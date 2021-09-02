@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
 import {
   Text,
   View,
@@ -9,21 +9,24 @@ import {
   Dimensions,
   Keyboard,
   TouchableOpacity,
+  ActivityIndicator,
 } from "react-native";
 import axios from "axios";
 
 const { width, height } = Dimensions.get("window");
 
 function Signup(props) {
-  const [first_name, setFrist_name] = React.useState("Test1");
-  const [last_name, setLast_name] = React.useState("Test2");
-  const [email, setEmail] = React.useState("test2@gmail.com");
-  const [password, setPassword] = React.useState("1234567");
+  const [first_name, setFrist_name] = useState("Test1");
+  const [last_name, setLast_name] = useState("Test2");
+  const [email, setEmail] = useState("test2@gmail.com");
+  const [password, setPassword] = useState("1234567");
+  const [loading, setLoading] = useState(false);
   console.log(width, height);
 
   const signup = async (e) => {
+    setLoading(true);
     Keyboard.dismiss();
-    
+
     if (!email || !email) {
       return alert("Please enter a valid email address");
     }
@@ -36,7 +39,7 @@ function Signup(props) {
     if (!last_name) {
       return alert("Please fill out Last name .");
     }
-    
+
     try {
       const response = await axios
         .post("/auth/register", {
@@ -49,6 +52,7 @@ function Signup(props) {
       console.log("Registration", response);
       props.navigation.replace("home");
     } catch (error) {
+      setLoading(false)
       console.log("error ", error.response);
       alert(error.response.data.message);
     }
@@ -97,7 +101,13 @@ function Signup(props) {
 
         <TouchableOpacity onPress={signup}>
           <View style={styles.signInButton}>
-            <Text style={{ color: "#fff", textAlign: "center" }}>SIGN UP</Text>
+            {loading ? (
+              <ActivityIndicator size="small" color="#fff" />
+            ) : (
+              <Text style={{ color: "#fff", textAlign: "center" }}>
+                SIGN UP
+              </Text>
+            )}
           </View>
         </TouchableOpacity>
       </View>

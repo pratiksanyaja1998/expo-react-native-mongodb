@@ -11,7 +11,7 @@ const User = require("../../models/User");
 // @desc     get user by college id
 // @access   Private
 router.get("/users/list", [auth], async (req, res) => {
-  let user = await User.findAll().select("-password").populate("collegeId");
+  let user = await User.find().select("-password");
   // console.log(user[0]._id,req.user._id,user[0]._id.toString())
   user = user.filter((u) => u._id.toString() != req.user._id.toString());
   return res.status(200).send({

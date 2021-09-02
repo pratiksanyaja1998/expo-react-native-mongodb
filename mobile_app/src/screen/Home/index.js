@@ -1,13 +1,17 @@
-import React, { Component } from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import {
   Button,
   Keyboard,
   Platform,
   StyleSheet,
+  List,
+  FlatList,
   Text,
   TextInput,
   TouchableOpacity,
   View,
+  ActivityIndicator,
 } from "react-native";
 // import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import { Dimensions } from "react-native";
@@ -15,7 +19,7 @@ import { Dimensions } from "react-native";
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#003f5c",
+    // backgroundColor: "#003f5c",
     alignItems: "center",
     justifyContent: "center",
   },
@@ -40,32 +44,57 @@ const styles = StyleSheet.create({
   },
 });
 
-export default class RegistrationScreen extends Component {
-  wRef = React.createRef();
+function Home(props) {
+  const [loading, setLoading] = useState(false);
+  const [data, setData] = useState([]);
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      first_name: "",
-      last_name: "",
-      email: "",
-      password: "",
-    };
-  }
-  onRegistration() {
-    const { first_name, last_name, email, password } = this.state;
+  // const getdata = async (e) => {
+  //   setLoading(true);
+  //   console.log("get data ========")
+    
+  //   try {
+  //     const response = await axios
+  //       .get("/auth/users/list")
+  //       .then((response) => response.data);
+  //       console.log("response ====");
+  //       console.log("response " , response)
+  //       setLoading(false);
+  //     // console.log("Users", response);
+  //   } catch (error) {
+  //     setLoading(false);
+  //     console.log("error ", error.response);
+  //     alert(error.response.data.message);
+  //   }
+  //   console.log("catch over ===");
+  // };
 
-    Alert.alert(
-      "Credentials",
-      `${first_name} +${last_name} + ${email} + ${password}`
-    );
-  }
+  useEffect(()=>{
+    console.log("use effect call ====")
+    console.log(axios)
+    axios.get("/auth/users/list").then((response)=>{
+      console.log("response ====");
+        console.log("response " , response)
+        setData (response.data.data)
+    }).catch(error=>{
+      console.log("error ", error);
+      alert(error.response.data.message);
+    })
+    // await getdata()
+  },[])
 
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text > Hello This is Home</Text>
-      </View>
-    );
-  }
+  
+
+  return (
+    <View style={styles.container}>
+      {loading ? (
+        <ActivityIndicator size="large" color="#000" />
+      ) : (
+        <>
+          <Text>Home</Text>
+        </>
+      )}
+    </View>
+  );
 }
+
+export default Home;
